@@ -21,7 +21,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final ImagePicker _picker = ImagePicker();
+  // final ImagePicker _picker = ImagePicker();
   XFile? _image;
 
   Future<void> saveImage() async {
@@ -30,22 +30,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       String fileName = DateTime.now().toIso8601String();
       String filePath = '${tempDir.path}/$fileName.png';
       await _image!.saveTo(filePath);
-      print('Image saved at: $filePath');
+      // print('Image saved at: $filePath');
     } else {
-      print('No image selected.');
+      // print('No image selected.');
+      return;
     }
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    try {
-      final pickedFile = await _picker.pickImage(source: source);
-      setState(() {
-        _image = pickedFile;
-      });
-    } catch (e) {
-      print('Error picking image: $e');
-    }
-  }
+  // Future<void> _pickImage(ImageSource source) async {
+  //   try {
+  //     final pickedFile = await _picker.pickImage(source: source);
+  //     setState(() {
+  //       _image = pickedFile;
+  //     });
+  //   } catch (e) {
+  //     print('Error picking image: $e');
+  //   }
+  // }
 
   final _service = Get.find<AuthService>();
   User? _user;

@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:movietime/src/enum/enum.dart';
 
-class AuthService extends GetxController{
+class AuthService extends GetxController {
   final form = FormControll();
   Future createAcount() async {
     try {
@@ -18,11 +16,9 @@ class AuthService extends GetxController{
       } else {
         Get.snackbar("Notification", "Fail");
       }
-      log("$credential");
     } on FirebaseAuthException catch (e) {
-      log("$e");
+      return e;
     } catch (e) {
-      print(e);
       Get.snackbar("Notification", "$e");
     }
   }
@@ -38,13 +34,11 @@ class AuthService extends GetxController{
       } else {
         Get.snackbar("Notification", "Fail");
       }
-      log("$credential");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
         Get.snackbar("Notification", "No user found for that email");
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        return;
       }
     }
   }
@@ -52,12 +46,8 @@ class AuthService extends GetxController{
   Future signout() async {
     await FirebaseAuth.instance.signOut();
   }
-  // User getCurrentUser() {
-  //   // Replace this with your actual implementation
-  //   // For example, fetching from Firebase Auth or your backend
-  //   return User("john_doe", "john.doe@example.com");
-  // }
-    User? getCurrentUser() {
+
+  User? getCurrentUser() {
     return FirebaseAuth.instance.currentUser;
   }
 }

@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movietime/mainpage.dart';
 import 'package:movietime/src/enum/theme.dart';
+import 'package:movietime/src/page/screen/splas-screen.dart';
 import 'package:movietime/src/service/authservice.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       builder: (context, themeProvider, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: MainPage(),
+          home: SplashScreen(),
           theme: themeProvider.currentTheme,
         );
       },
