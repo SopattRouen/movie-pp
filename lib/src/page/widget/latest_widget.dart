@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movietime/src/enum/theme.dart';
 import 'package:movietime/src/model/movie.dart';
 import 'package:movietime/src/page/widget/detail.dart';
 import 'package:movietime/src/page/widget/top-rate.dart';
 import 'package:movietime/src/service/tmdb.dart';
+import 'package:provider/provider.dart';
 
 class GenreWidget extends StatefulWidget {
   const GenreWidget({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _GenreWidgetState extends State<GenreWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return FutureBuilder<List<Genre>>(
       future: _genreData,
       builder: (context, snapshot) {
@@ -51,7 +54,9 @@ class _GenreWidgetState extends State<GenreWidget> {
                             height: 25,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey[200],
+                              color: themeProvider.isDarkMode
+                                  ? Colors.black
+                                  : Colors.grey[200],
                               boxShadow: [
                                 BoxShadow(
                                   offset: Offset(0, 2),
@@ -159,7 +164,7 @@ class _LatestWidgetState extends State<LatestWidget> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
                         return MovieDetailScreen(
-                          movieId:movie.id,
+                          movieId: movie.id,
                         );
                       }));
                     },

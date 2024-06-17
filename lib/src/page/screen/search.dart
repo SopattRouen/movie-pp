@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movietime/src/model/movie.dart';
 import 'package:movietime/src/page/widget/detail.dart';
-// import 'package:get/get.dart'; // Uncomment this if you are using GetX for navigation
 import 'package:movietime/src/service/tmdb.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -34,6 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 53, 16, 9),
       body: SingleChildScrollView(
@@ -80,6 +80,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                 hintText: "Search...",
                                 border: InputBorder.none,
                               ),
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
@@ -109,9 +112,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                         ); // Uncomment if using GetX for navigation
                       },
-                      leading: Image(
-                          image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w500${display[index].posterPath}')),
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image(
+                            image: NetworkImage(
+                                'https://image.tmdb.org/t/p/w500${display[index].posterPath}')),
+                      ),
                       title: Text(
                         display[index].title,
                         style: TextStyle(

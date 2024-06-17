@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movietime/src/enum/theme.dart';
+import 'package:provider/provider.dart';
 
 class InfoWidget extends StatelessWidget {
   const InfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
@@ -12,7 +15,7 @@ class InfoWidget extends StatelessWidget {
           "Information App",
           style: TextStyle(
             fontSize: 18,
-            color: Colors.black,
+            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movietime/src/enum/theme.dart';
 import 'package:movietime/src/page/screen/profile.dart';
 import 'package:movietime/src/page/screen/search.dart';
 import 'package:movietime/src/page/widget/latest_widget.dart';
 
 import 'package:movietime/src/page/widget/slide_widget.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -30,6 +32,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   AppBar _buildAppBar(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     // Define the _buildAppBar method
     return AppBar(
       title: Text(
@@ -53,9 +56,9 @@ class _HomepageState extends State<Homepage> {
                   },
                   child: Image(
                     height: 30,
-                    image: AssetImage(
-                      'assets/acc.png',
-                    ),
+                    image: themeProvider.isDarkMode
+                        ? AssetImage('assets/acc1.png')
+                        : AssetImage("assets/acc.png"),
                   ),
                 ),
               ),

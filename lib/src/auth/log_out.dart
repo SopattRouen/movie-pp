@@ -1,6 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:movietime/src/enum/theme.dart';
 import 'package:movietime/src/service/authservice.dart';
+import 'package:provider/provider.dart';
 
 class Logout extends StatefulWidget {
   const Logout({
@@ -16,6 +18,7 @@ final controll = AuthService();
 class _LogoutState extends State<Logout> {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return ListTile(
       onTap: () {
         setState(() {
@@ -36,12 +39,12 @@ class _LogoutState extends State<Logout> {
       },
       leading: Icon(
         Icons.logout,
-        color: Colors.black,
+        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
       ),
       title: Text(
         "Logout",
         style: TextStyle(
-          color: Colors.black,
+          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
           fontSize: 18,
         ),
       ),

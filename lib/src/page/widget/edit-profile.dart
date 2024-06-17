@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movietime/src/enum/theme.dart';
+import 'package:provider/provider.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return ListTile(
       onTap: () {
         showDialog(
@@ -87,12 +90,12 @@ class EditProfile extends StatelessWidget {
       },
       leading: Icon(
         Icons.edit,
-        color: Colors.black,
+        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
       ),
       title: Text(
         "Edit Profile",
         style: TextStyle(
-          color: Colors.black,
+          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
           fontSize: 18,
         ),
       ),
